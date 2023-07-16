@@ -9,12 +9,13 @@ const app = express();
 // For larger payload data limit is extended upto 20mb
 app.use(express.json({ limit: '20mb' }));
 app.use(cors());
+app.use('/api', router);
 // Url: https://mapupproject.onrender.com/api/check-intersections'
 app.use('/', (req, res) => res.send({
   message:
       'Mapup Project is running Successfully please visit given url => https://mapupproject.onrender.com/api/check-intersections',
 }));
-app.use('/api', router);
+
 
 // Start the server
 // Default Port : 3000
