@@ -18,6 +18,7 @@ const authenticate = (req, res, next) => {
     try {
       // Verify the JWT token
       const decoded = jwt.verify(token, SECRET_KEY);
+      console.log('Token Verified');
 
       // Authentication successful, attach the decoded token to the request object
       req.user = decoded;

@@ -1,3 +1,4 @@
+// errorHandler util to format the error
 const errorHandler = (error) => {
   try {
     let formatError = String(error).split(':');

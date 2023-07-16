@@ -1,28 +1,23 @@
 const express = require('express');
 const cors = require('cors');
 const { router } = require('./routes/route');
+const configVar = require('./config/index');
+
+const PORT = configVar.PORT || 3000;
 
 const app = express();
-app.use(express.json({ limit: '10mb' }));
+// For larger payload data limit is extended upto 20mb
+app.use(express.json({ limit: '20mb' }));
 app.use(cors());
+// Url: https://mapupproject.onrender.com/api/check-intersections'
+app.use('/', (req, res) => res.send({
+  message:
+      'Mapup Project is running Successfully please visit given url => https://mapupproject.onrender.com/api/check-intersections',
+}));
 app.use('/api', router);
 
-// Generate JWT token for testing purposes
-// app.post('/login', (req, res) => {
-//   // You can implement your own logic for user authentication
-//   const { username, password } = req.body;
-
-//   // Example: Authenticate the user
-//   if (username === 'Anchal' && password === 'anchal@1234') {
-//     const token = jwt.sign({ username }, secretKey, { expiresIn: '10d' });
-//     console.log({token : token})
-//     res.json({ token });
-//   } else {
-//     res.status(401).json({ error: 'Unauthorized' });
-//   }
-// });
-
 // Start the server
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+// Default Port : 3000
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

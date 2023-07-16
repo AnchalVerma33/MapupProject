@@ -30,11 +30,16 @@ const findIntersection = (req, res) => {
       ).features[0].geometry.coordinates,
     }));
 
+    console.log('Intersection point Result');
+    console.log(result);
     return res.json(result);
   } catch (error) {
     const formatError = errorHandler(error);
 
-    return res.status(formatError.statusCode).send({ error: formatError.errorMessage });
+    console.log(formatError);
+    return res
+      .status(formatError.statusCode)
+      .send({ error: formatError.errorMessage });
   }
 };
 
